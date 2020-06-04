@@ -6,4 +6,100 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="175dp"
+        android:layout_height="87dp"
+        android:layout_marginStart="121dp"
+        android:layout_marginTop="99dp"
+        android:layout_marginEnd="121dp"
+        android:layout_marginBottom="581dp"
+        android:text="@string/app_name"
+        android:textColor="@color/yellow"
+        android:textSize="70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/input_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="127dp"
+        android:layout_marginTop="242dp"
+        android:layout_marginEnd="71dp"
+        android:layout_marginBottom="444dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/input_pwd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="127dp"
+        android:layout_marginTop="343dp"
+        android:layout_marginEnd="71dp"
+        android:layout_marginBottom="343dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="224dp"
+        android:layout_marginEnd="330dp"
+        android:layout_marginBottom="480dp"
+        android:text="Email"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="328dp"
+        android:layout_marginEnd="259dp"
+        android:layout_marginBottom="376dp"
+        android:text="Mot de passe"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/btn_connexion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="153dp"
+        android:layout_marginTop="491dp"
+        android:layout_marginEnd="154dp"
+        android:layout_marginBottom="192dp"
+        android:text="Connexion"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
