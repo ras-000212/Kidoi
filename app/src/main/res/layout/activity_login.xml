@@ -11,7 +11,7 @@
         android:id="@+id/tv_kidoi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="70dp"
+        android:textSize="@dimen/size_Title1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -60,10 +60,6 @@
         app:layout_constraintLeft_toLeftOf="@id/tv_pwd"
         android:inputType="textPassword"
         android:textSize="@dimen/size_Description2"/>
-
-
-
-
 
     <Button
         android:id="@+id/btn_connexion"
