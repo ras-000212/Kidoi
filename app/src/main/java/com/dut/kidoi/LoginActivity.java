@@ -16,6 +16,11 @@ import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity {
     private ArrayList<Users> myDataSet = new ArrayList<Users>();
+=======
+public class LoginActivity extends AppCompatActivity {
+
+    private TextView link_connect;
+>>>>>>> 3c9c801e540d5f81b4b221a96ffff3eee41b2b00
 
     private TextView link_connect;
 
@@ -25,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+<<<<<<< HEAD
 
         link_connect = findViewById(R.id.tv_inscription);
 
@@ -48,5 +54,20 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
+=======
+
+        link_connect = findViewById(R.id.tv_inscription);
+
+        /*
+            Passer de la page de connexion à celle d'inscription
+         */
+        link_connect.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                startActivity(new Intent(LoginActivity.this, SignUp.class));
+            }
+
+        });
+>>>>>>> 3c9c801e540d5f81b4b221a96ffff3eee41b2b00
     }
 }
