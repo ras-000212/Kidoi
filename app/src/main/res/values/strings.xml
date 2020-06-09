@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Kidoi</string>
+
+    <string name="bottom_navigation_menu_demander">Demander</string>
+    <string name="bottom_navigation_menu_envoyer">Envoyer</string>
+    <string name="bottom_navigation_menu_chercher">Chercher</string>
+    <string name="bottom_navigation_menu_profil">Profil</string>
 </resources>
