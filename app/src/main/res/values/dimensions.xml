@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="size_Title1">70dp</dimen>
+    <dimen name="size_Title2">50dp</dimen>
+    <dimen name="size_Description1">18dp</dimen>
+    <dimen name="size_Description2">12dp</dimen>
+</resources>
