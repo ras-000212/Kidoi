@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:text="@string/app_name"
         android:textSize="@dimen/size_Title1"
-        android:textColor="black"
+        android:textColor="@color/black"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
