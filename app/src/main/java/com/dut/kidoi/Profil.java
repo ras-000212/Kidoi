@@ -1,50 +1,59 @@
 package com.dut.kidoi;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 
+import com.dut.kidoi.models.Chercher;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
 public class Profil extends AppCompatActivity {
 
     //@BindView(R.id.activity_main_bottom_navigation)BottomNavigationView bottomNavigationView;
-    private BottomNavigationView B;
+    private Button B;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        this.B = findViewById(R.id.activity_main_bottom_navigation);
-        this.configureBottomView();
 
+        /**
+         * Menu fixe en bas
+         */
+        BottomNavigationView nav = findViewById(R.id.bottom_nav);
+        nav.setOnNavigationItemSelectedListener(navListener);
     }
 
 
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    //Fragment selectedFragment = null;
+                    switch (item.getItemId()) {
+                        case R.id.action_demander:
+                            startActivity(new Intent(Profil.this,Demander.class));
+                            break;
+                        case R.id.action_envoyer:
+                            startActivity(new Intent(Profil.this, Chercher.class));
+                            break;
+                        case R.id.action_chercher:
+                            startActivity(new Intent(Profil.this,Chercher.class));
+                            break;
+                        case R.id.action_profil:
+                            startActivity(new Intent(Profil.this,Profil.class));
+                            break;
+                    }
+                    //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+                    return true;
+                }
+            };
 
-    private void configureBottomView(){
-        B.setOnNavigationItemSelectedListener(item -> updateMainFragment(item.getItemId()));
-    }
-
-    private Boolean updateMainFragment(Integer integer){
-        switch (integer) {
-            case R.id.action_demander:
-                startActivity(new Intent(Profil.this,Demander.class));
-                break;
-            case R.id.action_envoyer:
-                startActivity(new Intent(Profil.this,Demander.class));
-                break;
-            case R.id.action_chercher:
-                startActivity(new Intent(Profil.this,Demander.class));
-                break;
-            case R.id.action_profil:
-                startActivity(new Intent(Profil.this,Demander.class));
-                break;
-        }
-        return true;
-    }
 }
