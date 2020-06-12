@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
 
+import com.dut.kidoi.models.Chercher;
+import com.dut.kidoi.models.Envoyer;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
@@ -40,10 +42,10 @@ public class Profil extends AppCompatActivity {
                             startActivity(new Intent(Profil.this,Demander.class));
                             break;
                         case R.id.action_envoyer:
-                            startActivity(new Intent(Profil.this, Chercher.class));
+                            startActivity(new Intent(Profil.this, Envoyer.class));
                             break;
                         case R.id.action_chercher:
-                            startActivity(new Intent(Profil.this,Chercher.class));
+                            startActivity(new Intent(Profil.this, Chercher.class));
                             break;
                         case R.id.action_profil:
                             startActivity(new Intent(Profil.this,Profil.class));

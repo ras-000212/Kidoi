@@ -12,12 +12,12 @@ import com.dut.kidoi.Profil;
 import com.dut.kidoi.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class Chercher extends AppCompatActivity {
+public class Envoyer extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chercher);
+        setContentView(R.layout.activity_envoyer);
 
         BottomNavigationView nav = findViewById(R.id.bottom_nav);
         nav.setOnNavigationItemSelectedListener(navListener);
@@ -30,16 +30,16 @@ public class Chercher extends AppCompatActivity {
                     //Fragment selectedFragment = null;
                     switch (item.getItemId()) {
                         case R.id.action_demander:
-                            startActivity(new Intent(Chercher.this, Demander.class));
+                            startActivity(new Intent(Envoyer.this, Demander.class));
                             break;
                         case R.id.action_envoyer:
-                            startActivity(new Intent(Chercher.this, Envoyer.class));
+                            startActivity(new Intent(Envoyer.this, Envoyer.class));
                             break;
                         case R.id.action_chercher:
-                            startActivity(new Intent(Chercher.this, Chercher.class));
+                            startActivity(new Intent(Envoyer.this, Chercher.class));
                             break;
                         case R.id.action_profil:
-                            startActivity(new Intent(Chercher.this,Profil.class));
+                            startActivity(new Intent(Envoyer.this,Profil.class));
                             break;
                     }
                     //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
