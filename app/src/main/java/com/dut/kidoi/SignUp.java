@@ -9,16 +9,16 @@ import android.widget.Button;
 
 public class SignUp extends AppCompatActivity {
 
-    private Button btn_signup;
+    private Button btn_inscription;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        this.btn_signup = findViewById(R.id.btn_inscription);
+        btn_inscription = findViewById(R.id.btn_inscription);
 
 
-        btn_signup.setOnClickListener(new View.OnClickListener(){
+        btn_inscription.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 startActivity(new Intent(SignUp.this, Profil.class));
