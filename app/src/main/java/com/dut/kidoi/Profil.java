@@ -24,8 +24,7 @@ public class Profil extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profil);
-
-
+        
          //Menu fixe en bas
         BottomNavigationView nav = findViewById(R.id.bottom_nav);
         nav.setOnNavigationItemSelectedListener(navListener);
