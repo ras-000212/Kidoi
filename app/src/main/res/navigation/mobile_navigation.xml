@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.dut.kidoi.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_demander"
+        android:name="com.dut.kidoi.ui.demander.DemanderFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_demander" />
+
+    <fragment
+        android:id="@+id/navigation_envoyer"
+        android:name="com.dut.kidoi.ui.envoyer.EnvoyerFragment"
+        android:label="envoyer"
+        tools:layout="@layout/fragment_envoyer" />
+    <fragment
+        android:id="@+id/navigation_chercher"
+        android:name="com.dut.kidoi.chercher"
+        android:label="chercher"
+        tools:layout="@layout/fragment_chercher" />
+</navigation>

@@ -49,9 +49,9 @@ public class SignUp extends AppCompatActivity {
         btn_inscription.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+                startActivity(new Intent(SignUp.this, Root.class));
                 initializeUser();
                 createAccount();
-                startActivity(new Intent(SignUp.this, Profil.class));
             }
 
         });

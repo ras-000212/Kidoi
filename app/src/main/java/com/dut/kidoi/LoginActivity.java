@@ -20,7 +20,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
 
 import java.util.ArrayList;
 
@@ -65,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
         initialize();
 
         // Initialize Firebase Auth
-        mAuth = FirebaseAuth.getInstance();
+       mAuth = FirebaseAuth.getInstance();
 
         link_connect.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,12 +77,9 @@ public class LoginActivity extends AppCompatActivity {
             signIn();
         });
 
-
-
-
     }
 
-    public void signIn (){
+   public void signIn (){
         initialize();
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
