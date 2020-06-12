@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1093316056231",
+    "firebase_url": "https://appmob-kidoi.firebaseio.com",
+    "project_id": "appmob-kidoi",
+    "storage_bucket": "appmob-kidoi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1093316056231:android:e2cbd3b1bc1e48ffef7782",
+        "android_client_info": {
+          "package_name": "com.dut.kidoi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1093316056231-c3efvqes9bugad12mu4h5rnvvum4cvu4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dut.kidoi",
+            "certificate_hash": "2ffc03fefeb70afbcbf61d88fa377c4424b0af3c"
+          }
+        },
+        {
+          "client_id": "1093316056231-hgdjqfjj5iel20jumurc35ckhot7ujlo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgroBlmHEbCM9GQGSiPTqgKhw-K-su_Mc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1093316056231-hgdjqfjj5iel20jumurc35ckhot7ujlo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
