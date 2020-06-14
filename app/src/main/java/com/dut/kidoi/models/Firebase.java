@@ -25,7 +25,7 @@ public class Firebase {
         user.put("userID",uID);
 
 // Add a new document with a generated ID
-        db.collection("users")
+        db.collection("User")
                 .add(user)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
