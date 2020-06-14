@@ -48,15 +48,14 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser!=null){
-            startActivity(new Intent(LoginActivity.this, Profil
-                    .class));
+        updateUI(currentUser);
         }
 
-    }
 
     private void updateUI(FirebaseUser currentUser) {
-
+        if (currentUser!=null){
+            startActivity(new Intent(LoginActivity.this, Root.class));
+        }
     }
 
 
@@ -92,10 +91,7 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("Authentication", "Success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
-
-                            Intent in = new Intent(LoginActivity.this, Profil.class);
+                            Intent in = new Intent(LoginActivity.this, Root.class);
                             startActivity(in);
 
                         } else {
