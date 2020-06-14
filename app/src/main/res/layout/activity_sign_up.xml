@@ -46,16 +46,16 @@
             android:layout_marginTop="200dp"/>
 
         <TextView
-            android:id="@+id/tv_login"
+            android:id="@+id/tv_user"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="45dp"
-            android:text="Login"
+            android:text="Nom d'utilisateur"
             app:layout_constraintTop_toTopOf="@id/et_email"
             android:layout_marginTop="80dp"/>
 
         <EditText
-            android:id="@+id/et_login"
+            android:id="@+id/et_user"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="45dp"
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="45dp"
             android:text="Mot de passe"
-            app:layout_constraintTop_toTopOf="@id/et_login"
+            app:layout_constraintTop_toTopOf="@id/et_user"
             android:layout_marginTop="80dp"/>
 
         <EditText
@@ -82,7 +82,7 @@
             android:layout_marginRight="45dp"
             android:ems="10"
             android:inputType="textPassword"
-            app:layout_constraintTop_toTopOf="@id/et_login"
+            app:layout_constraintTop_toTopOf="@id/et_user"
             android:layout_marginTop="80dp"/>
 
         <TextView

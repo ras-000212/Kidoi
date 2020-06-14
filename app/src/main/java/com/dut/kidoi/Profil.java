@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.dut.kidoi.models.Chercher;
 import com.dut.kidoi.models.Envoyer;
@@ -17,6 +18,7 @@ public class Profil extends AppCompatActivity {
 
     //@BindView(R.id.activity_main_bottom_navigation)BottomNavigationView bottomNavigationView;
     private Button B;
+    private TextView tv_login;
 
 
     @Override
@@ -28,6 +30,8 @@ public class Profil extends AppCompatActivity {
          //Menu fixe en bas
         BottomNavigationView nav = findViewById(R.id.bottom_nav);
         nav.setOnNavigationItemSelectedListener(navListener);
+
+
     }
 
 
