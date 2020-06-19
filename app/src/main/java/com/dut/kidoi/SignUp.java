@@ -1,23 +1,19 @@
 package com.dut.kidoi;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.dut.kidoi.models.Firebase;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.dut.kidoi.repositories.FirebaseRepository;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 
 public class SignUp extends AppCompatActivity {
 
@@ -25,9 +21,9 @@ public class SignUp extends AppCompatActivity {
     private String email,pwd,conPwd,username;
     private Button btn_inscription;
     private FirebaseAuth mAuth= FirebaseAuth.getInstance();
-    private Firebase db;
+    private FirebaseRepository db = new FirebaseRepository();
 
-    public void initializeUser(){
+    public void initializeUser() {
         et_email = findViewById(R.id.et_email);
         et_pwd=findViewById(R.id.et_pwd);
         et_conpwd=findViewById(R.id.et_pwdConfirm);
@@ -46,39 +42,36 @@ public class SignUp extends AppCompatActivity {
         btn_inscription = findViewById(R.id.btn_inscription);
 
 
-        btn_inscription.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                startActivity(new Intent(SignUp.this, Root.class));
-                initializeUser();
-                createAccount();
-            }
-
+        btn_inscription.setOnClickListener(view -> {
+           // startActivity(new Intent(SignUp.this, Root.class));
+            initializeUser();
+            createAccount();
         });
     }
 
     public void createAccount(){
         mAuth.createUserWithEmailAndPassword(email, pwd)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Log.d("SignUp", "Success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            String uID = user.getUid();
-                            updateUI(user);
-                            db.addUser(email,username,uID);
-                            FirebaseAuth.getInstance().signOut();
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        Log.d("SignUp", "Success");
+                        db.addUser(email,username, task.getResult().getUser().getUid(), user -> {
+                            if(user == null){
+                                Toast.makeText(SignUp.this,"Impossible de créer le compte", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+
                             signIn();
+                        });
 
-
-                        } else {
+                    } else {
+                        if(task.getException() instanceof FirebaseAuthWeakPasswordException){
+                            Toast.makeText(SignUp.this,"Le mot de passe doit faire au minimum 6 caractères de long", Toast.LENGTH_SHORT).show();
+                        } else if(task.getException() instanceof FirebaseAuthUserCollisionException) {
                             Toast.makeText(SignUp.this,"L'adresse mail que vous tentez d'utiliser est déjà attribuée à un compte", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(SignUp.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                         }
-                    }
-
-                    private void updateUI(FirebaseUser user) {
-                    }
+                     }
                 });
     }
 
@@ -117,29 +110,28 @@ public class SignUp extends AppCompatActivity {
 
     public void signIn (){
         mAuth.signInWithEmailAndPassword(email, pwd)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d("Authentication", "Success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        // Sign in success, update UI with the signed-in user's information
+                        Log.d("Authentication", "Success");
+                        FirebaseRepository.getInstance().getUser(user -> {
+                            if(user == null){
+                                Toast.makeText(SignUp.this, "Impossible de récupérer les données du compte", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
 
+                            Log.d("connected", user.getEmail());
+                            Log.d("connected", user.getLogin());
+                            Log.d("connected", user.getDocumentId());
                             Intent in = new Intent(SignUp.this, Root.class);
                             startActivity(in);
 
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w("Authentification", "signInWithEmail:failure", task.getException());
-                            Toast.makeText(SignUp.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            updateUI(null);
-                        }
-
-                    }
-
-                    private void updateUI(Object o) {
+                        });
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        Log.w("Authentification", "signInWithEmail:failure", task.getException());
+                        Toast.makeText(SignUp.this, "Authentication failed.",
+                                Toast.LENGTH_SHORT).show();
                     }
                 });
     }

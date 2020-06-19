@@ -9,18 +9,17 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".Root"
-            android:label="@string/title_activity_profile">
-
+            android:label="@string/title_activity_profile"></activity>
+        <!--<activity android:name=".models.Envoyer" />
+        <activity android:name=".models.Chercher" />-->
+        <activity android:name=".SignUp" />
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-        <activity android:name=".SignUp" />
-        <activity android:name=".LoginActivity">
-
-        </activity>
+        <!--<activity android:name=".Demander" />
+        <activity android:name=".Profil" />-->
     </application>
 </manifest>
