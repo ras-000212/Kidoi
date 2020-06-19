@@ -95,7 +95,6 @@ public class LoginActivity extends AppCompatActivity {
                             updateUI(user);
 
                             Intent in = new Intent(LoginActivity.this, Root.class);
-                            Intent in = new Intent(LoginActivity.this, Root.class);
                             startActivity(in);
 
                         } else {

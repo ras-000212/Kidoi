@@ -23,12 +23,6 @@ public class Root extends AppCompatActivity {
         setContentView(R.layout.activity_root);
         BottomNavigationView navView = findViewById(R.id.nav_view);
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        Fragment fragment = new HomeFragment();
-        fragmentTransaction.add(R.id.nav_host_fragment, fragment);
-        fragmentTransaction.commit();
-
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
