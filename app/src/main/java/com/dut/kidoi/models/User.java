@@ -2,6 +2,9 @@ package com.dut.kidoi.models;
 
 import com.dut.kidoi.repositories.FirebaseRepository;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class User {
 
     private String login;
