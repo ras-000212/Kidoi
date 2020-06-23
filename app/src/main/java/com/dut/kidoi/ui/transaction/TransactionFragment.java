@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -14,6 +15,7 @@ import com.dut.kidoi.R;
 public class TransactionFragment extends Fragment {
 
     private TransactionViewModel transactionViewModel;
+    private Spinner sp;
 
     public static TransactionFragment newInstance() {
         TransactionFragment fragment = new TransactionFragment();
@@ -28,13 +30,12 @@ public class TransactionFragment extends Fragment {
                 ViewModelProviders.of(this).get(TransactionViewModel.class);
         View root = inflater.inflate(R.layout.fragment_transaction, container, false);
 
-        /*final TextView textView = root.findViewById(R.id.text_dashboard);
-        demanderViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });*/
+        /**
+         * remplir la liste déroulante
+         */
+        this.sp = root.findViewById(R.id.sp_type);
+
+
         return root;
     }
 }

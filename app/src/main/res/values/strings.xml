@@ -1,8 +1,6 @@
 <resources>
     <string name="app_name">Kidoi</string>
 
-    <string name="bottom_navigation_menu_demander">Demander</string>
-    <string name="bottom_navigation_menu_envoyer">Envoyer</string>
     <string name="bottom_navigation_menu_chercher">Chercher</string>
     <string name="bottom_navigation_menu_profil">Profil</string>
     <string name="title_activity_profile">Profile</string>
@@ -12,4 +10,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="type_array">
+        <item>Demander</item>
+        <item>Envoyer</item>
+    </string-array>
 </resources>
