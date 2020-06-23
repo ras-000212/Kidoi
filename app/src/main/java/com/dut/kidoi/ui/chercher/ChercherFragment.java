@@ -1,19 +1,32 @@
 package com.dut.kidoi.ui.chercher;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.dut.kidoi.R;
+import com.dut.kidoi.models.User;
+import com.dut.kidoi.repositories.FirebaseRepository;
+import com.dut.kidoi.utils.Callback;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class ChercherFragment extends Fragment {
 
     private ChercherViewModel chercherViewModel;
+    private EditText et_searchUser;
+    private Button btn_searchUser;
+    private FirebaseRepository fr=new FirebaseRepository();
+    private FirebaseFirestore db;
+
 
     public static ChercherFragment newInstance() {
         ChercherFragment fragment = new ChercherFragment();
@@ -28,6 +41,26 @@ public class ChercherFragment extends Fragment {
                 ViewModelProviders.of(this).get(ChercherViewModel.class);
         View root = inflater.inflate(R.layout.fragment_chercher, container, false);
 
+        et_searchUser=root.findViewById(R.id.et_searchUser);
+        btn_searchUser=root.findViewById(R.id.btn_searchUser);
+
+
+
+
+        btn_searchUser.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+              String name_friend = et_searchUser.getText().toString();
+              Log.d("ecriture", "onCreateView: "+name_friend);
+            fr.getUserLogin(name_friend, new Callback<User>() {
+                @Override
+                public void call(User user) {
+                    Log.d("USER",user.toString() + user.getLogin() +user.getEmail());
+                }
+            });
+          }
+      });
+
         /*final TextView textView = root.findViewById(R.id.text_dashboard);
         chercherViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
@@ -36,5 +69,29 @@ public class ChercherFragment extends Fragment {
             }
         });*/
         return root;
+
     }
-}
+
+
+
+
+    public void getUserLogin(String username, Callback<User> cb) {
+        db.collection("users").whereEqualTo("username", username).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                QuerySnapshot document = task.getResult();
+
+                if (document.getDocuments().isEmpty()) {
+                    cb.call(null);
+                    return;
+                }
+
+                cb.call(new User(
+                        document.getDocuments().get(0).getString("username"),
+                        document.getDocuments().get(0).getString("email"),
+                        document.getDocuments().get(0).getString("userID")
+                ));
+            }
+        });
+    }
+
+    }

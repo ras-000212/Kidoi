@@ -40,4 +40,5 @@ public class User {
     public void save(){
         FirebaseRepository.getInstance().updateUser(this);
     }
+
 }
