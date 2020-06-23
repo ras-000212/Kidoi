@@ -12,16 +12,11 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_demander"
-        android:name="com.dut.kidoi.ui.demander.DemanderFragment"
+        android:id="@+id/navigation_transaction"
+        android:name="com.dut.kidoi.ui.transaction.TransactionFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_demander" />
+        tools:layout="@layout/fragment_transaction" />
 
-    <fragment
-        android:id="@+id/navigation_envoyer"
-        android:name="com.dut.kidoi.ui.envoyer.EnvoyerFragment"
-        android:label="envoyer"
-        tools:layout="@layout/fragment_envoyer" />
     <fragment
         android:id="@+id/navigation_chercher"
         android:name="com.dut.kidoi.ui.chercher.ChercherFragment"
