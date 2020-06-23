@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Name"
+                android:hint="Entrez un login"
                 app:layout_constraintTop_toBottomOf="@+id/textView3"
                 android:layout_marginTop="50dp"
                 android:layout_marginLeft="35dp"
