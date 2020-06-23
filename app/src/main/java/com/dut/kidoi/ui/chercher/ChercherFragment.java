@@ -46,10 +46,17 @@ public class ChercherFragment extends Fragment {
 
         String name_friend = et_searchUser.getText().toString();
 
+
         btn_searchUser.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
-
+              Log.d("ecriture", "onCreateView: "+name_friend);
+            fr.getUserLogin("dede", new Callback<User>() {
+                @Override
+                public void call(User user) {
+                    Log.d("USER",user.toString() + user.getLogin() +user.getEmail());
+                }
+            });
           }
       });
 

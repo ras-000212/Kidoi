@@ -83,30 +83,27 @@ public class FirebaseRepository {
             }
         });
     }
-/*
-    public  void getUserLogin(String username, Callback<User> cb) {
 
-        db.collection("users").document("test")
-                .get()
-                .addOnSuccessListener(task -> {
-                        if (task.isSuccesful()) {
-                            QuerySnapshot document = task.getResult();
+    public void getUserLogin(String username, Callback<User> cb) {
+        db.collection("users").whereEqualTo("username", username).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                QuerySnapshot document = task.getResult();
 
-                            if (document.getDocuments().isEmpty()) {
-                                cb.call(null);
-                                return;
-                            }
-
-                            cb.call(new User(
-                                    document.getDocuments().get(0).getString("username"),
-                                    document.getDocuments().get(0).getString("email"),
-                                    document.getDocuments().get(0).getString("userID")
-                            ));
-                        }
-                    });
+                if (document.getDocuments().isEmpty()) {
+                    cb.call(null);
+                    return;
                 }
 
-*/
+                cb.call(new User(
+                        document.getDocuments().get(0).getString("username"),
+                        document.getDocuments().get(0).getString("email"),
+                        document.getDocuments().get(0).getString("userID")
+                ));
+            }
+        });
+    }
+
+
 
     public void getUser(Callback<User> cb){
         getUser(FirebaseAuth.getInstance().getCurrentUser().getUid(), user -> {
