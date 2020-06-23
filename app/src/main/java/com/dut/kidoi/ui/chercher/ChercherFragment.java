@@ -44,14 +44,15 @@ public class ChercherFragment extends Fragment {
         et_searchUser=root.findViewById(R.id.et_searchUser);
         btn_searchUser=root.findViewById(R.id.btn_searchUser);
 
-        String name_friend = et_searchUser.getText().toString();
+
 
 
         btn_searchUser.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
+              String name_friend = et_searchUser.getText().toString();
               Log.d("ecriture", "onCreateView: "+name_friend);
-            fr.getUserLogin("dede", new Callback<User>() {
+            fr.getUserLogin(name_friend, new Callback<User>() {
                 @Override
                 public void call(User user) {
                     Log.d("USER",user.toString() + user.getLogin() +user.getEmail());
