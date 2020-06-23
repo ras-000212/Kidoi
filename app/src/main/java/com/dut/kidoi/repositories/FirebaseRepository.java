@@ -5,18 +5,21 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.dut.kidoi.models.Transaction;
 import com.dut.kidoi.models.User;
 import com.dut.kidoi.utils.Callback;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 
 public class FirebaseRepository {
@@ -103,7 +106,65 @@ public class FirebaseRepository {
         });
     }
 
+    public void demander (String demandeur, String receveur, int montant, String message, Boolean deuxiemeTransaction){
+        Map<String, Object> transaction = new HashMap<>();
+        transaction.put("idDemandeur", demandeur);
+        transaction.put("idReceveur", receveur);
+        transaction.put("montant", montant);
+        transaction.put("fait",false);
+        transaction.put("message",message);
 
+        StringBuilder id = new StringBuilder();
+        Random rnd = new Random();
+        id.append(demandeur+receveur+montant+message+rnd.nextInt(10000));
+
+        //Ajout dans le demandeur
+        db.collection("users").document(demandeur).collection("recevoir").document(id.toString()).set(transaction)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.d("Success", "bien joue");
+               if (deuxiemeTransaction==false){
+                   envoyer(receveur,demandeur,montant,message,true);
+               }
+
+            }
+        })      .addOnFailureListener(e -> {
+                    Log.w("Error", "Error adding document", e);
+
+                });
+    }
+    public void envoyer (String envoyeur, String receveur, int montant, String message,boolean deuxiemeTransaction){
+        Map<String, Object> transaction = new HashMap<>();
+        transaction.put("idDemandeur", envoyeur);
+        transaction.put("idReceveur", receveur);
+        transaction.put("montant", montant);
+        transaction.put("fait",false);
+        transaction.put("message",message);
+
+        StringBuilder id = new StringBuilder();
+        Random rnd = new Random();
+        id.append(envoyeur+receveur+montant+message+rnd.nextInt(10000));
+
+        db.collection("users").document(envoyeur).collection("envoyer").document(id.toString()).set(transaction)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("Success", "bien joue");
+                        if(deuxiemeTransaction==false)
+                            demander(receveur,envoyeur,montant,message,true);
+
+                    }
+                })      .addOnFailureListener(e -> {
+            Log.w("Error", "Error adding document", e);
+
+        });
+    }
+
+public String generateID(){
+
+        return "";
+}
 
     public void getUser(Callback<User> cb){
         getUser(FirebaseAuth.getInstance().getCurrentUser().getUid(), user -> {

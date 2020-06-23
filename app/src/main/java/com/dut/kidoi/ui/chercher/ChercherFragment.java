@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.dut.kidoi.R;
+import com.dut.kidoi.models.Transaction;
 import com.dut.kidoi.models.User;
 import com.dut.kidoi.repositories.FirebaseRepository;
 import com.dut.kidoi.utils.Callback;
@@ -51,13 +52,16 @@ public class ChercherFragment extends Fragment {
           @Override
           public void onClick(View v) {
               String name_friend = et_searchUser.getText().toString();
-              Log.d("ecriture", "onCreateView: "+name_friend);
-            fr.getUserLogin(name_friend, new Callback<User>() {
-                @Override
-                public void call(User user) {
-                    Log.d("USER",user.toString() + user.getLogin() +user.getEmail());
-                }
-            });
+              Log.d("ecriture", "onCreateView: " + name_friend);
+              fr.getUserLogin(name_friend, new Callback<User>() {
+                  @Override
+                  public void call(User user) {
+                      Log.d("USER", user.toString() + user.getLogin() + user.getEmail());
+                  }
+              });
+
+              fr.demander("dede", "alexis",5,"caca",false);
+
           }
       });
 

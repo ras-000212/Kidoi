@@ -7,17 +7,17 @@ public class    Transaction {
     private String idDebit;
     private String idCredit;
     private Date date;
-    private String message;
+    private String motif;
     private float montant;
     private boolean fait;
 
-    public Transaction(String idCredit, String idDebit, Date date, String message, float montant, boolean fait) {
+    public Transaction(String idCredit, String idDebit, Date date, String motif, float montant, boolean fait) {
 
         this.date = date;
         this.fait = fait;
         this.idCredit = idCredit;
         this.idDebit = idDebit;
-        this.message = message;
+        this.motif = motif;
         this.montant = montant;
 
     }
@@ -35,7 +35,7 @@ public class    Transaction {
     }
 
     public String getMessage() {
-        return message;
+        return motif;
     }
 
     public float getMontant() {
