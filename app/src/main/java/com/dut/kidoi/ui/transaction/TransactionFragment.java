@@ -1,4 +1,4 @@
-package com.dut.kidoi.ui.envoyer;
+package com.dut.kidoi.ui.transaction;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,12 +11,12 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.dut.kidoi.R;
 
-public class EnvoyerFragment extends Fragment {
+public class TransactionFragment extends Fragment {
 
-    private EnvoyerViewModel envoyerViewModel;
+    private TransactionViewModel transactionViewModel;
 
-    public static EnvoyerFragment newInstance() {
-        EnvoyerFragment fragment = new EnvoyerFragment();
+    public static TransactionFragment newInstance() {
+        TransactionFragment fragment = new TransactionFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -24,12 +24,12 @@ public class EnvoyerFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        envoyerViewModel =
-                ViewModelProviders.of(this).get(EnvoyerViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_envoyer, container, false);
+        transactionViewModel =
+                ViewModelProviders.of(this).get(TransactionViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_transaction, container, false);
 
-       /* final TextView textView = root.findViewById(R.id.text_notifications);
-        envoyerViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        /*final TextView textView = root.findViewById(R.id.text_dashboard);
+        demanderViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
