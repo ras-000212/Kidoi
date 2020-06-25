@@ -167,6 +167,7 @@ public class FirebaseRepository {
 
     public void getRecevoir(String u,Callback<HashMap<String,Transaction>> t){
         final HashMap<String,Transaction> tR = new HashMap<>();
+        Log.d("REGARDONNNNNNS","USERNAMEEEE" + u);
         db.collection("users").document(u).collection("recevoir").get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 for (QueryDocumentSnapshot document : task.getResult()) {

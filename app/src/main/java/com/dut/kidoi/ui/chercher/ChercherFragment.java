@@ -48,14 +48,14 @@ public class ChercherFragment extends Fragment {
         btn_searchUser=root.findViewById(R.id.btn_searchUser);
 
 
-
+        Log.d("CHERCHER FRAGMENT", "VU CREEE");
 
         btn_searchUser.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
               String name_friend = et_searchUser.getText().toString();
               Log.d("ecriture", "onCreateView: " + name_friend);
-              fr.getUserLogin(name_friend, new Callback<User>() {
+              /*fr.getUserLogin(name_friend, new Callback<User>() {
                   @Override
                   public void call(User user) {
                       Log.d("USER", user.toString() + user.getLogin() + user.getEmail());
@@ -74,7 +74,7 @@ public class ChercherFragment extends Fragment {
                     public void call(HashMap<String, Transaction> stringTransactionHashMap) {
 
                     }
-                });
+                });*/
 
           }
       });
