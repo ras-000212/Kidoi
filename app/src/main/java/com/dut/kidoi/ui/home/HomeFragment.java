@@ -2,6 +2,8 @@ package com.dut.kidoi.ui.home;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.telecom.Call;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,16 +16,21 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.dut.kidoi.LoginActivity;
 import com.dut.kidoi.R;
+import com.dut.kidoi.models.Transaction;
 import com.dut.kidoi.models.User;
 import com.dut.kidoi.repositories.FirebaseRepository;
+import com.dut.kidoi.utils.Callback;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     private String uName;
-    private FirebaseRepository fb;
+    private FirebaseRepository fr = new FirebaseRepository().getInstance();
 
     public static HomeFragment newInstance() {
         HomeFragment fragment = new HomeFragment();
@@ -56,8 +63,72 @@ public class HomeFragment extends Fragment {
         showARecevoir(root);
         showAEnvoyer(root);
 
-        fb = FirebaseRepository.getInstance();
-        //User user = fb.
+
+        fr.getRecevoir(fr.getConnectedUser().getLogin(), new Callback<HashMap<String, Transaction>>() {
+            @Override
+            public void call(HashMap<String, Transaction> stringTransactionHashMap) {
+                LinearLayout lay_parent = root.findViewById(R.id.lay_parentRecevoir) ;
+                for (Map.Entry<String,Transaction> m: stringTransactionHashMap.entrySet()){
+                    Log.d("map", "call: "+m.toString());
+                    LinearLayout lay_child = new LinearLayout(root.getContext());
+                    lay_child.setOrientation(LinearLayout.VERTICAL);
+
+                    LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                            500, ViewGroup.LayoutParams.MATCH_PARENT);
+                    layoutParams.setMargins(100,0,0,0);
+                    lay_child.setBackgroundColor(getResources().getColor(R.color.yellow));
+                    lay_child.setLayoutParams(layoutParams);
+                    TextView tv_title = new TextView(root.getContext());
+                    tv_title.setTextSize(20);
+                    tv_title.setText(m.getValue().getAmi());
+
+                    TextView tv_show = new TextView(root.getContext());
+                    tv_show.setTextSize(15);
+                    tv_show.setText(String.valueOf(m.getValue().getMontant()));
+
+                    lay_child.addView(tv_title);
+                    lay_child.addView(tv_show);
+
+                    lay_parent.addView(lay_child);
+
+
+                }
+            }
+        });
+
+        fr.getEnvoyer(fr.getConnectedUser().getLogin(), new Callback<HashMap<String, Transaction>>() {
+            @Override
+            public void call(HashMap<String, Transaction> stringTransactionHashMap) {
+                LinearLayout lay_parent = root.findViewById(R.id.lay_parentEnvoyer) ;
+                for (Map.Entry<String,Transaction> m: stringTransactionHashMap.entrySet()){
+                    Log.d("map", "call: "+m.toString());
+                    LinearLayout lay_child = new LinearLayout(root.getContext());
+                    lay_child.setOrientation(LinearLayout.VERTICAL);
+
+                    LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                            500, ViewGroup.LayoutParams.MATCH_PARENT);
+                    layoutParams.setMargins(100,0,0,0);
+                    lay_child.setBackgroundColor(getResources().getColor(R.color.yellow));
+                    lay_child.setLayoutParams(layoutParams);
+                    TextView tv_title = new TextView(root.getContext());
+                    tv_title.setTextSize(20);
+                    tv_title.setText(m.getValue().getAmi());
+
+                    TextView tv_show = new TextView(root.getContext());
+                    tv_show.setTextSize(15);
+                    tv_show.setText(String.valueOf(m.getValue().getMontant()));
+
+                    lay_child.addView(tv_title);
+                    lay_child.addView(tv_show);
+
+                    lay_parent.addView(lay_child);
+
+
+                }
+            }
+        });
+
+
         return root;
     }
 
