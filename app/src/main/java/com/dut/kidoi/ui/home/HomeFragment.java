@@ -15,10 +15,12 @@ import com.dut.kidoi.LoginActivity;
 import com.dut.kidoi.R;
 import com.dut.kidoi.repositories.FirebaseRepository;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
+    private String uName;
 
     public static HomeFragment newInstance() {
         HomeFragment fragment = new HomeFragment();
@@ -43,6 +45,8 @@ public class HomeFragment extends Fragment {
 
         final TextView sessionName = root.findViewById(R.id.session_name);
         System.out.println(FirebaseRepository.getInstance().getConnectedUser().getLogin());
+        sessionName.setText(FirebaseRepository.getInstance().getConnectedUser().getLogin());
+
 
         /*final TextView textView = root.findViewById(R.id.text_home);
         homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {

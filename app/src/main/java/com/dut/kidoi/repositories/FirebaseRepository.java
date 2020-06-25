@@ -138,7 +138,7 @@ public class FirebaseRepository {
     }
 
 
-        public void envoyer (String envoyeur, String ami, int montant, String message,boolean deuxiemeTransaction){
+        public void envoyer (String envoyeur, String ami, int montant, String message, boolean deuxiemeTransaction){
         Map<String, Object> transaction = new HashMap<>();
         transaction.put("ami", ami);
         transaction.put("montant", montant);
