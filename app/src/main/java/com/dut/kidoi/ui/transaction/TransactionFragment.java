@@ -1,6 +1,8 @@
 package com.dut.kidoi.ui.transaction;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.BoringLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +25,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
 
+import java.util.concurrent.TimeUnit;
+
 public class TransactionFragment extends Fragment {
 
     private TransactionViewModel transactionViewModel;
@@ -32,6 +36,7 @@ public class TransactionFragment extends Fragment {
     private Button bt_transaction;
     private int montant;
     private String login,message, type, uName;
+    private boolean validate = false;
 
     public static TransactionFragment newInstance() {
         TransactionFragment fragment = new TransactionFragment();
@@ -81,60 +86,68 @@ public class TransactionFragment extends Fragment {
 
     public void transaction(){
 
-        if(!verifInput()){
-            return;
-        }
-        Log.d("Success", "il s'agit de : " + type);
-        if(this.type.equals("Demande")){
-            Log.d("Success", "Demande commencé avec : "+ uName + " " + login + " " + montant + " " + message);
-            fr.demander(uName, login, montant, message, false);
-            clearInput();
-            Toast.makeText(getContext(), "Demande d'argent envoyée avec succès",Toast.LENGTH_LONG).show();
+        verifInput(new Callback<Boolean>() {
+            @Override
+            public void call(Boolean aBoolean) {
+                Log.d("boolean transaction", "call: "+aBoolean);
+                if(aBoolean){
+                    Log.d("Success", "il s'agit de : " + type);
+                    if(type.equals("Demande")){
+                        Log.d("Success", "Demande commencé avec : "+ uName + " " + login + " " + montant + " " + message);
+                        fr.demander(uName, login, montant, message, false);
+                        clearInput();
+                        Toast.makeText(getContext(), "Demande d'argent envoyée avec succès",Toast.LENGTH_LONG).show();
 
-        }else{
-            Log.d("Success", "Envoie commencé avec : "+ uName + " " + login + " " + montant + " " + message);
-            fr.envoyer(uName, login, montant, message, false);
-            clearInput();
-            Toast.makeText(getContext(), "Demande d'envoie d'argent envoyée avec succès",Toast.LENGTH_LONG).show();
-        }
+                    }else{
+                        Log.d("Success", "Envoie commencé avec : "+ uName + " " + login + " " + montant + " " + message);
+                        fr.envoyer(uName, login, montant, message, false);
+                        clearInput();
+                        Toast.makeText(getContext(), "Demande d'envoie d'argent envoyée avec succès",Toast.LENGTH_LONG).show();
+                    }
+                }
+
+            }
+        });
+
 
     }
 
-    public boolean verifInput(){
+    public void verifInput(Callback<Boolean>b){
+        verifUserExist(this.login, new Callback<Boolean>() {
+            @Override
+            public void call(Boolean aBoolean) {
+                if(login.isEmpty()){
+                    et_login.setError("Aucun utilisateur avec ce login");
+                    et_login.requestFocus();
+                    b.call(false);
+                }
+                else if (aBoolean==false){
+                    et_login.setError("pas de login existant");
+                    et_login.requestFocus();
+                    b.call(false);
+                }
+                else if(montant == 0){
+                    et_montant.setError("Montant invalide");
+                    et_montant.requestFocus();
+                    b.call(false);
+                }
+                else if(message.isEmpty()) {
+                    et_message.setError("Veuillez indiquer un message");
+                    et_message.requestFocus();
+                    b.call(false);
+                }
+                else{
+                    b.call(true);
+                }
+            }
+        });
 
-        boolean validate = true;
-
-        if(this.login.isEmpty()){
-            this.et_login.setError("Aucun utilisateur avec ce login");
-            et_login.requestFocus();
-            validate = false;
-        }
-
-        if(!verifUserExist(login)){
-
-
-        }
-
-        if(this.montant == 0){
-            this.et_montant.setError("Montant invalide");
-            et_montant.requestFocus();
-            validate = false;
-        }
-
-        if(this.message.isEmpty()){
-            this.et_message.setError("Veuillez indiquer un message");
-            et_message.requestFocus();
-            validate = false;
-        }
-
-        return validate;
     }
 
     public void clearInput(){
-
-        et_montant.setText(" ");
-        et_message.setText(" ");
-        et_login.setText(" ");
+        et_montant.setText("");
+        et_message.setText("");
+        et_login.setText("");
     }
 
     /**
@@ -143,19 +156,14 @@ public class TransactionFragment extends Fragment {
      * @return
      */
 
-    public boolean verifUserExist(String login){
-
-        boolean verif = true;
+    public void verifUserExist(String login, Callback<Boolean> b){
         fr.getUserLogin(login, new Callback<User>() {
             @Override
             public void call(User user) {
-                Log.d("USER", user.toString() + user.getLogin() + user.getEmail());
-
-            }
-
+                if(user==null) {
+                    b.call(false);
+                }else b.call(true);
+                }
         });
-
-
-        return verif;
     }
 }
