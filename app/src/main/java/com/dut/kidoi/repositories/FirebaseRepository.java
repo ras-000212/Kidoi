@@ -198,10 +198,6 @@ public class FirebaseRepository {
         });
     }
 
-
-
-
-
     public void getUser(Callback<User> cb){
         getUser(FirebaseAuth.getInstance().getCurrentUser().getUid(), user -> {
             connectedUser = user;

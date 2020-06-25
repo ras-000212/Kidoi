@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.dut.kidoi.LoginActivity;
 import com.dut.kidoi.R;
+import com.dut.kidoi.models.User;
 import com.dut.kidoi.repositories.FirebaseRepository;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -22,6 +23,7 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     private String uName;
+    private FirebaseRepository fb;
 
     public static HomeFragment newInstance() {
         HomeFragment fragment = new HomeFragment();
@@ -54,6 +56,8 @@ public class HomeFragment extends Fragment {
         showARecevoir(root);
         showAEnvoyer(root);
 
+        fb = FirebaseRepository.getInstance();
+        //User user = fb.
         return root;
     }
 
