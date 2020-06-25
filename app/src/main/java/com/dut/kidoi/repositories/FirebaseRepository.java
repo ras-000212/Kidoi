@@ -93,6 +93,7 @@ public class FirebaseRepository {
     public void getUserLogin(String username, Callback<User> cb) {
         db.collection("users").whereEqualTo("username", username).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
+                Log.d("cacacacca", "getUserLogin: cacacacaacaca");
                 QuerySnapshot document = task.getResult();
 
                 if (document.getDocuments().isEmpty()) {
@@ -168,8 +169,6 @@ public class FirebaseRepository {
         final HashMap<String,Transaction> tR = new HashMap<>();
         db.collection("users").document(u).collection("recevoir").get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-
-                int i = 0;
                 for (QueryDocumentSnapshot document : task.getResult()) {
                   tR.put(document.getId(),new Recevoir(document.getString("ami"),document.getString("message"),document.getLong("montant"),document.getBoolean("fait")));
                 }
@@ -185,8 +184,6 @@ public class FirebaseRepository {
         final HashMap<String,Transaction> tE = new HashMap<>();
         db.collection("users").document(u).collection("envoyer").get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-
-                int i = 0;
                 for (QueryDocumentSnapshot document : task.getResult()) {
                     tE.put(document.getId(),new Envoyer(document.getString("ami"),document.getString("message"),document.getLong("montant"),document.getBoolean("fait")));
                 }
