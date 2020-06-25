@@ -134,6 +134,8 @@ public class FirebaseRepository {
 
                 });
     }
+
+
     public void envoyer (String envoyeur, String receveur, int montant, String message,boolean deuxiemeTransaction){
         Map<String, Object> transaction = new HashMap<>();
         transaction.put("idDemandeur", envoyeur);
@@ -161,10 +163,12 @@ public class FirebaseRepository {
         });
     }
 
-public String generateID(){
+    public String generateID(){
 
         return "";
-}
+    }
+
+
 
     public void getUser(Callback<User> cb){
         getUser(FirebaseAuth.getInstance().getCurrentUser().getUid(), user -> {

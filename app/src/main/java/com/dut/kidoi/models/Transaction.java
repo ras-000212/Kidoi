@@ -2,7 +2,7 @@ package com.dut.kidoi.models;
 
 import java.util.Date;
 
-public class    Transaction {
+public class Transaction {
 
     private String idDebit;
     private String idCredit;
