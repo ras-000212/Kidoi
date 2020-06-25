@@ -1,41 +1,40 @@
 package com.dut.kidoi.models;
 
+import com.dut.kidoi.repositories.FirebaseRepository;
+import com.dut.kidoi.utils.Callback;
+
 import java.util.Date;
 
-public class    Transaction {
+public class Transaction {
 
-    private String idDebit;
-    private String idCredit;
-    private Date date;
-    private String motif;
+    private User ami;
+    private String message;
     private float montant;
     private boolean fait;
+    FirebaseRepository fr = new FirebaseRepository();
 
-    public Transaction(String idCredit, String idDebit, Date date, String motif, float montant, boolean fait) {
+    public Transaction(String username, String message, float montant, boolean fait) {
 
-        this.date = date;
         this.fait = fait;
-        this.idCredit = idCredit;
-        this.idDebit = idDebit;
-        this.motif = motif;
+        this.message = message;
         this.montant = montant;
+        this.ami = null;
+        fr.getUserLogin(username, new Callback<User>() {
+            private User u;
 
-    }
+            @Override
+            public void call(User user) {
+                String login = user.getLogin();
+                String email = user.getEmail();
+                String documentID = user.getDocumentId();
 
-    public String getIdDebit() {
-        return idDebit;
-    }
+                u=new User(login,email,documentID);
+                setAmi(u);
+            }
 
-    public String getIdCredit() {
-        return idCredit;
-    }
+        });
 
-    public Date getDate() {
-        return date;
-    }
 
-    public String getMessage() {
-        return motif;
     }
 
     public float getMontant() {
@@ -45,4 +44,6 @@ public class    Transaction {
     public boolean isFait() {
         return fait;
     }
+
+    public void setAmi(User u ){this.ami=u;}
 }

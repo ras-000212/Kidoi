@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
@@ -106,17 +107,16 @@ public class FirebaseRepository {
         });
     }
 
-    public void demander (String demandeur, String receveur, int montant, String message, Boolean deuxiemeTransaction){
+    public void demander (String demandeur, String ami, int montant, String message, Boolean deuxiemeTransaction){
         Map<String, Object> transaction = new HashMap<>();
-        transaction.put("idDemandeur", demandeur);
-        transaction.put("idReceveur", receveur);
+        transaction.put("ami", ami);
         transaction.put("montant", montant);
         transaction.put("fait",false);
         transaction.put("message",message);
 
         StringBuilder id = new StringBuilder();
         Random rnd = new Random();
-        id.append(demandeur+receveur+montant+message+rnd.nextInt(10000));
+        id.append(demandeur+ami+montant+message+rnd.nextInt(10000));
 
         //Ajout dans le demandeur
         db.collection("users").document(demandeur).collection("recevoir").document(id.toString()).set(transaction)
@@ -125,7 +125,7 @@ public class FirebaseRepository {
             public void onSuccess(Void aVoid) {
                 Log.d("Success", "bien joue");
                if (deuxiemeTransaction==false){
-                   envoyer(receveur,demandeur,montant,message,true);
+                   envoyer(ami,demandeur,montant,message,true);
                }
 
             }
@@ -134,17 +134,16 @@ public class FirebaseRepository {
 
                 });
     }
-    public void envoyer (String envoyeur, String receveur, int montant, String message,boolean deuxiemeTransaction){
+    public void envoyer (String envoyeur, String ami, int montant, String message,boolean deuxiemeTransaction){
         Map<String, Object> transaction = new HashMap<>();
-        transaction.put("idDemandeur", envoyeur);
-        transaction.put("idReceveur", receveur);
+        transaction.put("ami", ami);
         transaction.put("montant", montant);
         transaction.put("fait",false);
         transaction.put("message",message);
 
         StringBuilder id = new StringBuilder();
         Random rnd = new Random();
-        id.append(envoyeur+receveur+montant+message+rnd.nextInt(10000));
+        id.append(envoyeur+ami+montant+message+rnd.nextInt(10000));
 
         db.collection("users").document(envoyeur).collection("envoyer").document(id.toString()).set(transaction)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -152,7 +151,7 @@ public class FirebaseRepository {
                     public void onSuccess(Void aVoid) {
                         Log.d("Success", "bien joue");
                         if(deuxiemeTransaction==false)
-                            demander(receveur,envoyeur,montant,message,true);
+                            demander(ami,envoyeur,montant,message,true);
 
                     }
                 })      .addOnFailureListener(e -> {
@@ -161,10 +160,20 @@ public class FirebaseRepository {
         });
     }
 
-public String generateID(){
+    public void getTransaction(String u,Callback<HashMap<String,Transaction>> t){
+        final HashMap<String,Transaction> tR = new HashMap<>();
+        db.collection("users").document(u).collection("recevoir").get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
 
-        return "";
-}
+                int i = 0;
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                  //  tR.put(document.getId(),new R(document.getString(""),document()))
+                }
+            }
+        });
+    }
+
+
 
     public void getUser(Callback<User> cb){
         getUser(FirebaseAuth.getInstance().getCurrentUser().getUid(), user -> {
@@ -181,9 +190,6 @@ public String generateID(){
         connectedUser = null;
     }
 
-    public void transaction(String credit,String debit,String montant,String motif){
-        //db.collection("users").whereEqualTo("username", credit).get().add
-    }
 
 
 }

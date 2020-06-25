@@ -60,7 +60,6 @@ public class ChercherFragment extends Fragment {
                   }
               });
 
-              fr.demander("dede", "alexis",5,"caca",false);
 
           }
       });
