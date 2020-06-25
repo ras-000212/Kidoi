@@ -9,11 +9,11 @@ public class Transaction {
 
     private User ami;
     private String message;
-    private float montant;
+    private Long montant;
     private boolean fait;
     FirebaseRepository fr = new FirebaseRepository();
 
-    public Transaction(String username, String message, float montant, boolean fait) {
+    public Transaction(String username, String message, long montant, boolean fait) {
 
         this.fait = fait;
         this.message = message;

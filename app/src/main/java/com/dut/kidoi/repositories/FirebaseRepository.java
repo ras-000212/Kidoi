@@ -5,6 +5,8 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.dut.kidoi.models.Envoyer;
+import com.dut.kidoi.models.Recevoir;
 import com.dut.kidoi.models.Transaction;
 import com.dut.kidoi.models.User;
 import com.dut.kidoi.utils.Callback;
@@ -162,15 +164,36 @@ public class FirebaseRepository {
         });
     }
 
-    public void getTransaction(String u,Callback<HashMap<String,Transaction>> t){
+    public void getRecevoir(String u,Callback<HashMap<String,Transaction>> t){
         final HashMap<String,Transaction> tR = new HashMap<>();
         db.collection("users").document(u).collection("recevoir").get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
 
                 int i = 0;
                 for (QueryDocumentSnapshot document : task.getResult()) {
-                  //  tR.put(document.getId(),new R(document.getString(""),document()))
+                  tR.put(document.getId(),new Recevoir(document.getString("ami"),document.getString("message"),document.getLong("montant"),document.getBoolean("fait")));
                 }
+
+                Log.d("mapofRecevoir", tR.toString());
+
+                t.call(tR);
+            }
+        });
+    }
+
+    public void getEnvoyer(String u,Callback<HashMap<String,Transaction>> t){
+        final HashMap<String,Transaction> tE = new HashMap<>();
+        db.collection("users").document(u).collection("envoyer").get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+
+                int i = 0;
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                    tE.put(document.getId(),new Envoyer(document.getString("ami"),document.getString("message"),document.getLong("montant"),document.getBoolean("fait")));
+                }
+
+                Log.d("mapofRecevoir", tE.toString());
+
+                t.call(tE);
             }
         });
     }
