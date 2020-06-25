@@ -117,12 +117,12 @@ public class TransactionFragment extends Fragment {
             @Override
             public void call(Boolean aBoolean) {
                 if(login.isEmpty()){
-                    et_login.setError("Aucun utilisateur avec ce login");
+                    et_login.setError("Login vide");
                     et_login.requestFocus();
                     b.call(false);
                 }
                 else if (aBoolean==false){
-                    et_login.setError("pas de login existant");
+                    et_login.setError("L'utilisateur n'existe pas");
                     et_login.requestFocus();
                     b.call(false);
                 }
