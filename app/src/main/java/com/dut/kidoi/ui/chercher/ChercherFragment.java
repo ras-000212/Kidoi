@@ -20,6 +20,8 @@ import com.dut.kidoi.utils.Callback;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.HashMap;
+
 public class ChercherFragment extends Fragment {
 
     private ChercherViewModel chercherViewModel;
@@ -59,7 +61,20 @@ public class ChercherFragment extends Fragment {
                       Log.d("USER", user.toString() + user.getLogin() + user.getEmail());
                   }
               });
+              //fr.demander("alexis","dede",5,"gibus",false);
+                fr.getRecevoir("dede", new Callback<HashMap<String, Transaction>>() {
+                    @Override
+                    public void call(HashMap<String, Transaction> stringTransactionHashMap) {
 
+                    }
+                });
+
+                fr.getEnvoyer("alexis", new Callback<HashMap<String, Transaction>>() {
+                    @Override
+                    public void call(HashMap<String, Transaction> stringTransactionHashMap) {
+
+                    }
+                });
 
           }
       });
