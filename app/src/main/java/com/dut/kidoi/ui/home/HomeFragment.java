@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -50,17 +51,26 @@ public class HomeFragment extends Fragment {
         /**
          * appel des affichages à compléter
          */
-        showARecevoir();
-        showAEnvoyer();
+        showARecevoir(root);
+        showAEnvoyer(root);
 
         return root;
     }
 
-    public void showARecevoir(){
+    public void showARecevoir(View v){
+
+        LinearLayout lay_parent = v.findViewById(R.id.lay_parentRecevoir) ;
 
     }
 
-    public void showAEnvoyer(){
+    public void showAEnvoyer(View v){
 
+        LinearLayout lay_parent = v.findViewById(R.id.lay_parentEnvoyer) ;
+
+    }
+
+    public void getAllTransaction(){
+
+        //récupérer l'objet User
     }
 }

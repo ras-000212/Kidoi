@@ -10,6 +10,7 @@ public class User {
     private String login;
     private String email;
     private final String documentId;
+    private ArrayList<Transaction> TransactionUser = new ArrayList<>();
 
     public User(String login, String email, String documentId) {
         this.email = email;
