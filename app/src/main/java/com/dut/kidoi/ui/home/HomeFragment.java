@@ -93,12 +93,23 @@ public class HomeFragment extends Fragment {
                     lay_child.setBackgroundColor(getResources().getColor(R.color.yellow));
                     lay_child.setLayoutParams(layoutParams);
                     TextView tv_title = new TextView(root.getContext());
-                    tv_title.setTextSize(20);
+                    tv_title.setTextSize(30);
                     tv_title.setText(m.getValue().getAmi());
 
+                    LinearLayout.LayoutParams l = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    l.setMargins(150, 30, 0, 0);
+                    tv_title.setLayoutParams(l);
+
                     TextView tv_show = new TextView(root.getContext());
-                    tv_show.setTextSize(15);
-                    tv_show.setText(String.valueOf(m.getValue().getMontant()));
+                    tv_show.setTextSize(30);
+                    String v = String.valueOf(m.getValue().getMontant()) + " €";
+                    tv_show.setText(v);
+
+                    LinearLayout.LayoutParams lastTxtParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    lastTxtParams.setMargins(150, 120, 0, 0);
+                    tv_show.setLayoutParams(lastTxtParams);
+
+                    Source: https://prograide.com/pregunta/33222/comment-changer-la-marge-de-textview
 
                     lay_child.addView(tv_title);
                     lay_child.addView(tv_show);
@@ -125,12 +136,22 @@ public class HomeFragment extends Fragment {
                     lay_child.setBackgroundColor(getResources().getColor(R.color.yellow));
                     lay_child.setLayoutParams(layoutParams);
                     TextView tv_title = new TextView(root.getContext());
-                    tv_title.setTextSize(20);
+                    tv_title.setTextSize(30);
                     tv_title.setText(m.getValue().getAmi());
 
+                    LinearLayout.LayoutParams l = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    l.setMargins(150, 30, 0, 0);
+                    tv_title.setLayoutParams(l);
+
                     TextView tv_show = new TextView(root.getContext());
-                    tv_show.setTextSize(15);
-                    tv_show.setText(String.valueOf(m.getValue().getMontant()));
+                    tv_show.setTextSize(30);
+                    String v = String.valueOf(m.getValue().getMontant()) + " €";
+                    tv_show.setText(v);
+
+
+                    LinearLayout.LayoutParams lastTxtParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    lastTxtParams.setMargins(150, 120, 0, 0);
+                    tv_show.setLayoutParams(lastTxtParams);
 
                     lay_child.addView(tv_title);
                     lay_child.addView(tv_show);
