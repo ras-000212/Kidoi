@@ -2,6 +2,7 @@ package com.dut.kidoi.ui.home;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.telecom.Call;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -30,7 +31,8 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     private String uName;
-    private FirebaseRepository fr = new FirebaseRepository().getInstance();
+    private FirebaseRepository fr = FirebaseRepository.getInstance();
+    private HashMap<String, Transaction> testHasssss;
 
     public static HomeFragment newInstance() {
         HomeFragment fragment = new HomeFragment();
@@ -54,8 +56,7 @@ public class HomeFragment extends Fragment {
         });
 
         final TextView sessionName = root.findViewById(R.id.session_name);
-        System.out.println(FirebaseRepository.getInstance().getConnectedUser().getLogin());
-        sessionName.setText(FirebaseRepository.getInstance().getConnectedUser().getLogin());
+        //sessionName.setText(FirebaseRepository.getInstance().getConnectedUser().getLogin());
 
         /**
          * appel des affichages à compléter
@@ -63,6 +64,19 @@ public class HomeFragment extends Fragment {
         showARecevoir(root);
         showAEnvoyer(root);
 
+
+        fr.getRecevoir("alexis", new Callback<HashMap<String, Transaction>>() {
+            @Override
+            public void call(HashMap<String, Transaction> stringTransactionHashMap) {
+
+                testHasssss = stringTransactionHashMap;
+                for (Map.Entry m : stringTransactionHashMap.entrySet()) {
+                    Log.d("clé: "," testttttt" + m.getKey()
+                            + " | valeur: " + m.getValue());
+                }
+            }
+        });
+        //User user = FirebaseRepository.getInstance().getConnectedUser();
 
         fr.getRecevoir(fr.getConnectedUser().getLogin(), new Callback<HashMap<String, Transaction>>() {
             @Override
