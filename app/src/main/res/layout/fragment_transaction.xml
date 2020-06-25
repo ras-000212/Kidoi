@@ -89,31 +89,13 @@
                 android:layout_marginLeft="35dp"
                 android:layout_marginRight="35dp"/>
 
-            <TextView
-                android:id="@+id/tv_devise"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Devise"
-                app:layout_constraintTop_toBottomOf="@+id/et_montant"
-                android:layout_marginTop="20dp"
-                android:textSize="20dp"
-                android:layout_marginLeft="35dp"/>
-
-            <Spinner
-                android:id="@+id/sp_devise"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/tv_devise"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="35dp"
-                android:layout_marginRight="35dp"/>
 
             <TextView
                 android:id="@+id/tv_message"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Votre message"
-                app:layout_constraintTop_toBottomOf="@+id/sp_devise"
+                app:layout_constraintTop_toBottomOf="@+id/et_montant"
                 android:layout_marginTop="20dp"
                 android:textSize="20dp"
                 android:layout_marginLeft="35dp"/>
@@ -132,7 +114,7 @@
                 android:layout_marginRight="35dp"/>
 
             <Button
-                android:id="@+id/btn_sendAskMoney"
+                android:id="@+id/btn_transaction"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Demander"
@@ -144,7 +126,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                app:layout_constraintTop_toBottomOf="@+id/btn_sendAskMoney"
+                app:layout_constraintTop_toBottomOf="@+id/btn_transaction"
                 android:layout_marginTop="10dp"/>
 
 
