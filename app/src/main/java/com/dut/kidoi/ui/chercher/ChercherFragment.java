@@ -75,7 +75,7 @@ public class ChercherFragment extends Fragment {
 
                     }
                 });*/
-            // fr.deleteTransaction("alexis","alexisdede100que du biffff5513","envoyer");
+            //fr.transactionDone("alexis","alexisdede100que du biffff5513","envoyer");
           }
       });
 

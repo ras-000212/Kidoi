@@ -221,6 +221,26 @@ public class FirebaseRepository {
 
     }
 
+    public void transactionDone (String user,String id,String typeTransaction){
+        DocumentReference transaction = db.collection("users").document(user).collection(typeTransaction).document(id);
+
+// Set the "isCapital" field of the city 'DC'
+        transaction
+                .update("fait", true)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("TAG", "DocumentSnapshot successfully updated!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("TAG", "Error updating document", e);
+                    }
+                });
+
+    }
     public User getConnectedUser() {
         return connectedUser;
     }
