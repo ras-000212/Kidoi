@@ -11,6 +11,7 @@ import com.dut.kidoi.models.Transaction;
 import com.dut.kidoi.models.User;
 import com.dut.kidoi.utils.Callback;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -201,6 +202,23 @@ public class FirebaseRepository {
             connectedUser = user;
             cb.call(connectedUser);
         });
+    }
+    public void deleteTransaction(String user,String id,String typeTransaction){
+        db.collection("users").document(user).collection(typeTransaction).document(id)
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("TAG", "DocumentSnapshot successfully deleted!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("TAG", "Error deleting document", e);
+                    }
+                });
+
     }
 
     public User getConnectedUser() {
