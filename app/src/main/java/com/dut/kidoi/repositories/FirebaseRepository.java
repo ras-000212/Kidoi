@@ -203,6 +203,13 @@ public class FirebaseRepository {
             cb.call(connectedUser);
         });
     }
+
+    /**
+     * Delete une transaction au bout de X temps, pas implémentée
+     * @param user
+     * @param id
+     * @param typeTransaction
+     */
     public void deleteTransaction(String user,String id,String typeTransaction){
         db.collection("users").document(user).collection(typeTransaction).document(id)
                 .delete()

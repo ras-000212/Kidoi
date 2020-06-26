@@ -96,7 +96,17 @@ public class HomeFragment extends Fragment {
                     LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                             500, ViewGroup.LayoutParams.MATCH_PARENT);
                     layoutParams.setMargins(100,0,0,0);
-                    lay_child.setBackgroundColor(getResources().getColor(R.color.yellow));
+
+                    /**
+                     * condition update pour mettre la couleur
+                     */
+                    boolean fait = m.getValue().isFait();
+                    if(fait){
+                        lay_child.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                    }else{
+                        lay_child.setBackgroundColor(getResources().getColor(R.color.yellow));
+                    }
+
                     lay_child.setLayoutParams(layoutParams);
                     TextView tv_title = new TextView(root.getContext());
                     tv_title.setTextSize(30);
@@ -164,7 +174,16 @@ public class HomeFragment extends Fragment {
                     LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                             500, ViewGroup.LayoutParams.MATCH_PARENT);
                     layoutParams.setMargins(100,0,0,0);
-                    lay_child.setBackgroundColor(getResources().getColor(R.color.yellow));
+                    /**
+                     * condition update pour mettre la couleur
+                     */
+                    boolean fait = m.getValue().isFait();
+                    if(fait){
+                        lay_child.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                    }else{
+                        lay_child.setBackgroundColor(getResources().getColor(R.color.yellow));
+                    }
+
                     lay_child.setLayoutParams(layoutParams);
                     TextView tv_title = new TextView(root.getContext());
                     tv_title.setTextSize(30);
