@@ -53,6 +53,7 @@ public class Transaction {
     /*public void setAmi(User u ){this.ami=u;}
 */
 
+
     public String getAmi() {
         return ami;
     }
