@@ -132,6 +132,8 @@ public class HomeFragment extends Fragment {
 
                         lay_child.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
                         Toast.makeText(getContext(), "Transaction terminée",Toast.LENGTH_LONG).show();
+                        String id = "test";
+                        fr.transactionDone(fr.getConnectedUser().getLogin(), id, "recevoir");
                     });
 
                     LinearLayout.LayoutParams lastTxtParams2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -210,6 +212,8 @@ public class HomeFragment extends Fragment {
 
                         lay_child.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
                         Toast.makeText(getContext(), "Transaction terminée",Toast.LENGTH_LONG).show();
+                        String id = "test";
+                        fr.transactionDone(fr.getConnectedUser().getLogin(), id, "envoyer");
                     });
 
                     LinearLayout.LayoutParams lastTxtParams2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
