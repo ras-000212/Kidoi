@@ -116,6 +116,19 @@ public class HomeFragment extends Fragment {
                     l.setMargins(150, 30, 0, 0);
                     tv_title.setLayoutParams(l);
 
+                    /**
+                     * afficher le message
+                     */
+
+                    TextView tv_libelle = new TextView(root.getContext());
+                    tv_libelle.setTextSize(15);
+                    String message = "Libellé : " + m.getValue().getMessage();
+                    tv_libelle.setText(message);
+
+                    LinearLayout.LayoutParams l2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    l2.setMargins(5, 5, 0, 0);
+                    tv_libelle.setLayoutParams(l2);
+
                     ImageView imgMoney = new ImageView(root.getContext());
                     imgMoney.setImageResource(R.drawable.money);
                     Bitmap bmp;
@@ -132,7 +145,7 @@ public class HomeFragment extends Fragment {
 
                         lay_child.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
                         Toast.makeText(getContext(), "Transaction terminée",Toast.LENGTH_LONG).show();
-                        String id = "test";
+                        String id = m.getKey();
                         fr.transactionDone(fr.getConnectedUser().getLogin(), id, "recevoir");
                     });
 
@@ -153,6 +166,7 @@ public class HomeFragment extends Fragment {
                     Source: https://prograide.com/pregunta/33222/comment-changer-la-marge-de-textview
 
                     lay_child.addView(tv_title);
+                    lay_child.addView(tv_libelle);
                     lay_child.addView(imgMoney);
                     lay_child.addView(tv_show);
                     lay_child.addView(tv_update);
@@ -192,9 +206,22 @@ public class HomeFragment extends Fragment {
                     tv_title.setText(m.getValue().getAmi());
 
                     LinearLayout.LayoutParams l = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                    l.setMargins(150, 30, 0, 0);
+                    l.setMargins(5, 30, 0, 0);
                     tv_title.setLayoutParams(l);
 
+
+                    /**
+                     * afficher le message
+                     */
+
+                    TextView tv_libelle = new TextView(root.getContext());
+                    tv_libelle.setTextSize(15);
+                    String message = "Libellé : " + m.getValue().getMessage();
+                    tv_libelle.setText(message);
+
+                    LinearLayout.LayoutParams l2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    l2.setMargins(150, 5, 0, 0);
+                    tv_libelle.setLayoutParams(l2);
 
                     ImageView imgMoney = new ImageView(root.getContext());
                     imgMoney.setImageResource(R.drawable.money);
@@ -212,7 +239,7 @@ public class HomeFragment extends Fragment {
 
                         lay_child.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
                         Toast.makeText(getContext(), "Transaction terminée",Toast.LENGTH_LONG).show();
-                        String id = "test";
+                        String id = m.getKey();
                         fr.transactionDone(fr.getConnectedUser().getLogin(), id, "envoyer");
                     });
 
@@ -231,6 +258,7 @@ public class HomeFragment extends Fragment {
                     tv_show.setLayoutParams(lastTxtParams);
 
                     lay_child.addView(tv_title);
+                    lay_child.addView(tv_libelle);
                     lay_child.addView(imgMoney);
                     lay_child.addView(tv_show);
                     lay_child.addView(tv_update);

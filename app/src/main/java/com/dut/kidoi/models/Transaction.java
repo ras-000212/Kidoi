@@ -39,6 +39,9 @@ public class Transaction {
 
     }
 
+    public String getMessage(){
+        return message;
+    }
     public float getMontant() {
         return montant;
     }
