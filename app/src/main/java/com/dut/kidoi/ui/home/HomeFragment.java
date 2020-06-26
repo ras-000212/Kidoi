@@ -1,6 +1,8 @@
 package com.dut.kidoi.ui.home;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.telecom.Call;
@@ -8,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -101,19 +104,38 @@ public class HomeFragment extends Fragment {
                     l.setMargins(150, 30, 0, 0);
                     tv_title.setLayoutParams(l);
 
+                    ImageView imgMoney = new ImageView(root.getContext());
+                    imgMoney.setImageResource(R.drawable.money);
+                    Bitmap bmp;
+                    bmp = BitmapFactory.decodeResource(getResources(),R.drawable.money);
+                    bmp=Bitmap.createScaledBitmap(bmp, 150,150, true);
+                    imgMoney.setImageBitmap(bmp);
+
+                    TextView tv_update = new TextView(root.getContext());
+                    tv_update.setTextSize(10);
+                    String v2 = "Terminer la transaction";
+                    tv_update.setText(v2);
+
+                    LinearLayout.LayoutParams lastTxtParams2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    lastTxtParams2.setMargins(150, 20, 0, 0);
+                    tv_update.setLayoutParams(lastTxtParams2);
+
                     TextView tv_show = new TextView(root.getContext());
-                    tv_show.setTextSize(30);
+                    tv_show.setTextSize(25);
                     String v = String.valueOf(m.getValue().getMontant()) + " €";
                     tv_show.setText(v);
 
                     LinearLayout.LayoutParams lastTxtParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                    lastTxtParams.setMargins(150, 120, 0, 0);
+                    lastTxtParams.setMargins(150, 10, 0, 0);
                     tv_show.setLayoutParams(lastTxtParams);
+
 
                     Source: https://prograide.com/pregunta/33222/comment-changer-la-marge-de-textview
 
                     lay_child.addView(tv_title);
+                    lay_child.addView(imgMoney);
                     lay_child.addView(tv_show);
+                    lay_child.addView(tv_update);
 
                     lay_parent.addView(lay_child);
 
@@ -144,18 +166,37 @@ public class HomeFragment extends Fragment {
                     l.setMargins(150, 30, 0, 0);
                     tv_title.setLayoutParams(l);
 
+
+                    ImageView imgMoney = new ImageView(root.getContext());
+                    imgMoney.setImageResource(R.drawable.money);
+                    Bitmap bmp;
+                    bmp = BitmapFactory.decodeResource(getResources(),R.drawable.money);
+                    bmp=Bitmap.createScaledBitmap(bmp, 150,150, true);
+                    imgMoney.setImageBitmap(bmp);
+
+                    TextView tv_update = new TextView(root.getContext());
+                    tv_update.setTextSize(10);
+                    String v2 = "Terminer la transaction";
+                    tv_update.setText(v2);
+
+                    LinearLayout.LayoutParams lastTxtParams2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    lastTxtParams2.setMargins(150, 20, 0, 0);
+                    tv_update.setLayoutParams(lastTxtParams2);
+
                     TextView tv_show = new TextView(root.getContext());
-                    tv_show.setTextSize(30);
+                    tv_show.setTextSize(25);
                     String v = String.valueOf(m.getValue().getMontant()) + " €";
                     tv_show.setText(v);
 
 
                     LinearLayout.LayoutParams lastTxtParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                    lastTxtParams.setMargins(150, 120, 0, 0);
+                    lastTxtParams.setMargins(150, 10, 0, 0);
                     tv_show.setLayoutParams(lastTxtParams);
 
                     lay_child.addView(tv_title);
+                    lay_child.addView(imgMoney);
                     lay_child.addView(tv_show);
+                    lay_child.addView(tv_update);
 
                     lay_parent.addView(lay_child);
 
