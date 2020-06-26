@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +22,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.dut.kidoi.LoginActivity;
 import com.dut.kidoi.R;
+import com.dut.kidoi.SignUp;
 import com.dut.kidoi.models.Transaction;
 import com.dut.kidoi.models.User;
 import com.dut.kidoi.repositories.FirebaseRepository;
@@ -116,6 +118,12 @@ public class HomeFragment extends Fragment {
                     String v2 = "Terminer la transaction";
                     tv_update.setText(v2);
 
+                    tv_update.setOnClickListener(view ->{
+
+                        lay_child.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                        Toast.makeText(getContext(), "Transaction terminée",Toast.LENGTH_LONG).show();
+                    });
+
                     LinearLayout.LayoutParams lastTxtParams2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                     lastTxtParams2.setMargins(150, 20, 0, 0);
                     tv_update.setLayoutParams(lastTxtParams2);
@@ -178,6 +186,12 @@ public class HomeFragment extends Fragment {
                     tv_update.setTextSize(10);
                     String v2 = "Terminer la transaction";
                     tv_update.setText(v2);
+
+                    tv_update.setOnClickListener(view ->{
+
+                        lay_child.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                        Toast.makeText(getContext(), "Transaction terminée",Toast.LENGTH_LONG).show();
+                    });
 
                     LinearLayout.LayoutParams lastTxtParams2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                     lastTxtParams2.setMargins(150, 20, 0, 0);
